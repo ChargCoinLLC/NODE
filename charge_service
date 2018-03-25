@@ -1,0 +1,236 @@
+
+#. /etc/node.conf
+contract_abi=[{\"constant\":false,\"inputs\":[{\"name\":\"_newAddress\",\"type\":\"address\"}],\"name\":\"setMultisigAddress\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"name\",\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_spender\",\"type\":\"address\"},{\"name\":\"_value\",\"type\":\"uint256\"}],\"name\":\"approve\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"node\",\"type\":\"address\"}],\"name\":\"parkingOff\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"totalSupply\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"maxCap\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"chargingRate\",\"type\":\"uint256\"},{\"name\":\"parkingRate\",\"type\":\"uint256\"}],\"name\":\"registerNode\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_from\",\"type\":\"address\"},{\"name\":\"_to\",\"type\":\"address\"},{\"name\":\"_value\",\"type\":\"uint256\"}],\"name\":\"transferFrom\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_to\",\"type\":\"address\"},{\"name\":\"_value\",\"type\":\"uint256\"}],\"name\":\"transferToContributor\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"address\"}],\"name\":\"parkingSwitches\",\"outputs\":[{\"name\":\"node\",\"type\":\"address\"},{\"name\":\"startTime\",\"type\":\"uint256\"},{\"name\":\"endTime\",\"type\":\"uint256\"},{\"name\":\"fixedRate\",\"type\":\"uint256\"},{\"name\":\"initialized\",\"type\":\"bool\"},{\"name\":\"predefinedAmount\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"decimals\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"address\"}],\"name\":\"chargingSwitches\",\"outputs\":[{\"name\":\"node\",\"type\":\"address\"},{\"name\":\"startTime\",\"type\":\"uint256\"},{\"name\":\"endTime\",\"type\":\"uint256\"},{\"name\":\"fixedRate\",\"type\":\"uint256\"},{\"name\":\"initialized\",\"type\":\"bool\"},{\"name\":\"predefinedAmount\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"END_TIME\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"address\"}],\"name\":\"reservedFundsCharging\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"minCap\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"multisig\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"standard\",\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"rate\",\"type\":\"uint256\"}],\"name\":\"updateChargingRate\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_eth\",\"type\":\"uint256\"}],\"name\":\"calculateEthToChargcoin\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"address\"}],\"name\":\"rateOfCharging\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"address\"}],\"name\":\"rateOfParking\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"node\",\"type\":\"address\"},{\"name\":\"time\",\"type\":\"uint256\"}],\"name\":\"parkingOn\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_spender\",\"type\":\"address\"},{\"name\":\"_subtractedValue\",\"type\":\"uint256\"}],\"name\":\"decreaseApproval\",\"outputs\":[{\"name\":\"success\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_owner\",\"type\":\"address\"}],\"name\":\"balanceOf\",\"outputs\":[{\"name\":\"balance\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"address\"}],\"name\":\"reservedFundsParking\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_numberOfReturns\",\"type\":\"uint256\"}],\"name\":\"batchReturnEthIfFailed\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"node\",\"type\":\"address\"}],\"name\":\"chargeOff\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"address\"}],\"name\":\"contributorList\",\"outputs\":[{\"name\":\"contributionAmount\",\"type\":\"uint256\"},{\"name\":\"tokensIssued\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"symbol\",\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"getPrice\",\"outputs\":[{\"name\":\"result\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"node\",\"type\":\"address\"}],\"name\":\"blockNode\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_to\",\"type\":\"address\"},{\"name\":\"_value\",\"type\":\"uint256\"}],\"name\":\"transfer\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"node\",\"type\":\"address\"},{\"name\":\"time\",\"type\":\"uint256\"}],\"name\":\"chargeOn\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"address\"}],\"name\":\"authorized\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"tokens\",\"type\":\"uint256\"}],\"name\":\"getAmountBonus\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"pure\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"BEGIN_TIME\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"rate\",\"type\":\"uint256\"}],\"name\":\"updateParkingRate\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_contributor\",\"type\":\"address\"}],\"name\":\"createTokens\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"_spender\",\"type\":\"address\"},{\"name\":\"_addedValue\",\"type\":\"uint256\"}],\"name\":\"increaseApproval\",\"outputs\":[{\"name\":\"success\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_owner\",\"type\":\"address\"},{\"name\":\"_spender\",\"type\":\"address\"}],\"name\":\"allowance\",\"outputs\":[{\"name\":\"remaining\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"crowdsaleState\",\"outputs\":[{\"name\":\"\",\"type\":\"uint8\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"ethRaised\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"fallback\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"blockNumber\",\"type\":\"uint256\"}],\"name\":\"CrowdsaleStarted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"blockNumber\",\"type\":\"uint256\"}],\"name\":\"CrowdsaleEnded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"to\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"ErrorSendingETH\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"blockNumber\",\"type\":\"uint256\"}],\"name\":\"MinCapReached\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"name\":\"blockNumber\",\"type\":\"uint256\"}],\"name\":\"MaxCapReached\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"owner\",\"type\":\"address\"},{\"indexed\":true,\"name\":\"spender\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"Approval\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"from\",\"type\":\"address\"},{\"indexed\":true,\"name\":\"to\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"Transfer\",\"type\":\"event\"}]
+contract_address=$(uci get node.service.contract)
+
+node_address=$(uci get node.station.address)
+node_address=$(echo $node_address | tr /A-Z/  /a-z/) #to lower
+client_address=""
+
+GETH=/ext/geth-linux-mipsle-1.7.3-4bb3c89d/geth 
+RPC=$(uci get node.service.rpc)
+SWITCH_PORT=$(uci get node.service.switch_port)
+DEBUG=$(uci get node.service.debug)
+interval=$(uci get node.service.interval)
+
+
+timestamp() {
+	date +"%s"
+}
+
+
+jsonval() {
+    temp=`echo $1 | sed 's/\\\\\//\//g' | sed 's/[{}]//g' | awk -v k="text" '{n=split($0,a,","); for (i=1; i<=n; i++) print a[i]}' | sed 's/\"\:\"/\|/g' | sed 's/[\,]/ /g' | sed 's/\"//g' | grep -w $2`
+    echo ${temp##*|}
+}
+
+
+read_contract() {
+
+	echo "
+		var contractAddress = '$contract_address';
+		var contract=eth.contract($contract_abi).at(contractAddress);
+		var clientAddress = '$client_address';
+		contract.chargingSwitches( clientAddress, function(error,result) {
+			console.log('{\"node\":\"'+result[0]+'\",\"startTime\":\"'+result[1]+'\",\"endTime\":\"'+result[2]+'\",\"fixedRate\":\"'+result[3]+'\",\"initialized\":\"'+result[4]+'\",\"predefinedAmount\":\"'+result[5]+'\"}')
+		});
+	" > /tmp/run.js
+	res=$($GETH --exec 'loadScript("/tmp/run.js")' attach $RPC)
+	echo $res
+
+}
+
+
+switch_on() {
+
+	gpioctl dirout-high $SWITCH_PORT
+	echo 1 > /sys/class/leds/omega2p\:amber\:system/brightness
+	
+}
+
+
+switch_off() {
+
+	gpioctl dirout-low $SWITCH_PORT
+	echo 0 > /sys/class/leds/omega2p\:amber\:system/brightness
+
+}
+
+
+#led initialize
+cat /sys/class/leds/omega2p\:amber\:system/trigger
+echo gpio > /sys/class/leds/omega2p\:amber\:system/trigger
+
+#init switch
+gpioctl dirout $SWITCH_PORT
+
+# register node in firebird
+db_call $node_address idle 
+ 
+if [ "$DEBUG" = 1 ]; then
+	echo "Running service... node $node_address"
+fi
+
+while [ true ]
+do
+
+	begin_t=$(timestamp) 
+	
+	# 1) read from db
+	
+	firebase_res=$(db_call $node_address)
+	client_address=$(jsonval $firebase_res client_address)
+	client_state=$(jsonval $firebase_res client_state)
+	current_t=$(timestamp)
+	diff_t=$((current_t-begin_t))
+	if [ "$DEBUG" = 1 ]; then
+		echo
+		echo "Firebase data $firebase_res $diff_t"
+	fi
+	
+	# 2) if there is request - read contract
+    
+	if [ "$client_state" = "request" ]; then
+
+		if [ "$DEBUG" = 1 ]; then
+			echo "We have a request for charging, reading smart contract now"
+		fi
+
+		contract_res=$(read_contract)
+		contract_res=${contract_res// true/}
+		current_t=$(timestamp)
+		diff_t=$((current_t-begin_t))
+		
+		if [ "$DEBUG" = 1 ]; then
+			echo "Contract data $contract_res $diff_t"
+		fi
+
+		contract_node=$(jsonval $contract_res node)
+		contract_node=$(echo $contract_node | tr /A-Z/  /a-z/) #to lower
+		initialized=$(jsonval $contract_res initialized)
+
+		# 3) check if payment was to our node
+
+		if [ "$contract_node" = "$node_address" ]; then
+
+			start_time=$(jsonval $contract_res startTime)
+			end_time=$(jsonval $contract_res endTime)
+			charge_period=$(($end_time-$start_time))
+
+			if [ "$DEBUG" = 1 ]; then
+				echo "Request for charging $charge_period sec"
+			fi
+		
+			# 4) set ready state
+			uci set node.client.address=$client_address
+			uci set node.client.state=$client_state
+			uci set node.station.state='ready'
+			uci node commit
+			
+			station_state=""
+			while [ "$station_state" != "ready" ]; do
+
+				db_call $node_address ready 
+				firebase_res=$(db_call $node_address)
+				station_state=$(jsonval $firebase_res station_state)
+				current_t=$(timestamp)
+				diff_t=$((current_t-begin_t))
+
+				if [ "$DEBUG" = 1 ]; then
+					echo "Setting station ready state $diff_t"
+				fi
+				sleep $interval
+			
+			done
+		
+			# 5) wait until client is ready
+
+			client_state=""
+			while [ "$client_state" != "ready" ]; do
+
+				firebase_res=$(db_call $node_address)
+				client_state=$(jsonval $firebase_res client_state)
+				current_t=$(timestamp)
+				diff_t=$((current_t-begin_t))
+
+				if [ "$DEBUG" = 1 ]; then
+					echo "Waiting client ready state $diff_t"
+				fi
+				sleep $interval
+		
+			done
+		
+			# 6) client is ready - start charging
+			uci set node.client.state=$client_state
+			uci set node.station.state='charging'
+			uci node commit
+
+			firebase_res=$(db_call $node_address charging)
+			current_t=$(timestamp)
+			charge_finish=$(($current_t+$charge_period))
+
+
+			# 7) check client state while charging
+			
+			time_to_charge=$charge_period
+			#while [ "$client_state" = "charging" ]&&(( time_to_charge > 0 )); do
+			while [ $time_to_charge -gt 0 ]; do
+			
+				firebase_res=$(curl -s $firebase_url/nodes/$node_address.json)
+				client_state=$(jsonval $firebase_res client_state)
+				
+				if [ "$client_state" != "charging" ]; then
+					break
+				fi	
+				
+				current_t=$(timestamp)
+				time_to_charge=$((charge_finish-current_t))
+				
+				if [ "$DEBUG" = 1 ]; then
+					echo "Charging will stop in $time_to_charge sec"
+				fi
+				sleep $interval
+				
+			done
+			
+			current_t=$(timestamp)
+			if [ $time_to_charge -gt 0 ]; then
+				
+				# 8) charging was stopped by client 
+				
+				uci set node.station.state='stopped'
+				firebase_res=$(db_call $node_address stopped)
+				if [ "$DEBUG" = 1 ]; then
+					echo "Charging stopped by client, time to charge: $time_to_charge sec"
+				fi
+				
+			else
+
+				# 9) charging finished
+
+				uci set node.station.state='charged'
+				firebase_res=$(db_call $node_address charged)
+				if [ "$DEBUG" = 1 ]; then
+					echo "Charging finished "
+				fi
+			fi
+			uci set node.client.state=$client_state
+			uci node commit
+			sleep $interval
+			sleep $interval
+			uci set node.station.state='idle'
+			uci node commit
+			
+		fi	# wrong node address in contract
+
+	fi
+
+	
+    if [ "$DEBUG" = 1 ]; then
+		echo Wait $interval seconds to check again
+	fi
+	sleep $interval
+
+done	
+
+	
