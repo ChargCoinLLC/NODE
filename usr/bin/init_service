@@ -1,0 +1,75 @@
+ext_path="/ext"
+geth_exe="geth-linux-mipsle-1.7.3-4bb3c89d/geth"
+geth_mode="light" 
+DEV=/dev/mmcblk0
+sdcard_swap="/dev/mmcblk0p1"
+sdcard_store="/dev/mmcblk0p2"
+
+echo "{\"node_status\":\"starting\",\"sdcard_ready\":\"0\"}" > /tmp/node_status.json
+
+while [ true ]
+do
+    #if [ ! -d "$ext_path" ]; then
+    #    mkdir $ext_path
+    #fi        
+    mkdir -p $ext_path
+
+    mounted=$(df | grep $ext_path)
+    if [ -z "$mounted" ]; then
+        echo "sdcard is not mounted" > /dev/console
+		echo "{\"node_status\":\"sdcard is not mounted\",\"sdcard_ready\":\"0\"}" > /tmp/node_status.json
+        if [ -e "$sdcard_store" ]; then
+            mount $sdcard_store $ext_path
+            #if [ ! -e "$sdcard_swap" ]; then
+                mkswap $sdcard_swap
+            #fi        
+            swapon $sdcard_swap
+            sleep 5
+        fi
+
+    else
+        if [ -f "$ext_path/$geth_exe" ]; then
+            break
+        else
+            echo "loading software ..." > /dev/console
+			echo "{\"node_status\":\"loading software\",\"sdcard_ready\":\"1\"}" > /tmp/node_status.json
+            wget -O /tmp/geth.tar.gz https://gethstore.blob.core.windows.net/builds/geth-linux-mipsle-1.7.3-4bb3c89d.tar.gz
+            cd $ext_path
+            tar xvzf /tmp/geth.tar.gz
+            chmod +x $ext_path/$geth_exe
+			
+			#wget http://charg.io/light.tgz -q -O $ext_path/light.tgz
+			#cd $ext_path/
+			#tar xfvz $ext_path/light.tgz
+
+        fi
+    fi
+    echo "waiting for sdcard ..." > /dev/console
+    sleep 20 
+done
+
+#check swap
+if [ ! -e "$sdcard_swap" ]; then
+    echo -e "n\np\n1\n\n+512M\nY\nw\n" | fdisk $DEV
+    mkswap $sdcard_swap
+fi        
+swapon $sdcard_swap
+
+#starting service with external rpc
+echo "starting charg service ..." > /dev/console
+charg_service&
+sleep 5
+
+echo "starting geth ..." > /dev/console
+$ext_path/$geth_exe --datadir=$ext_path/$geth_mode --syncmode=$geth_mode --cache=128 --rpc --rpcaddr "0.0.0.0" --rpcapi "admin,debug,miner,shh,txpool,personal,eth,net,web3" &
+sleep 10
+echo "done" > /dev/console
+exit 0            
+  
+#./geth-linux-amd64-1.7.3-4bb3c89d/geth  --datadir=/home/oleg/light  --syncmode=light --cache=1024   --rpc --rpcaddr "0.0.0.0" --rpcapi "admin,debug,miner,shh,txpool,personal,eth,net,web3" console
+#/ext/geth-linux-mipsle-1.7.3-4bb3c89d/geth --datadir=/ext/fast --syncmode=fast --rpc --rpcaddr "0.0.0.0" --rpcapi "admin,debug,miner,shh,txpool,personal,eth,net,web3" console  
+
+#/ext/geth-linux-mipsle-1.7.3-4bb3c89d/geth --datadir=/ext/light --syncmode=light --cache=128 --rpc --rpcaddr "0.0.0.0" --rpcapi "admin,debug,miner,shh,txpool,personal,eth,net,web3"
+#tar cfvz light.tgz light
+
+

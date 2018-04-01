@@ -1,0 +1,83 @@
+#!/bin/sh
+
+printf "Content-type: application/json\r\n\r\n"
+#printf "{\"results\":\"ok\"}";
+#read QUERY_STRING
+
+ACTION=`echo "$QUERY_STRING" | sed -n 's/^.*action=\([^&]*\).*$/\1/p'`
+
+#echo $ACTION >> /tmp/debug
+
+case $ACTION in
+  register)
+    regNodeTitle=`echo "$QUERY_STRING" | sed -n 's/^.*regNodeTitle=\([^&]*\).*$/\1/p'`
+    regNodeAddress=`echo "$QUERY_STRING" | sed -n 's/^.*regNodeAddress=\([^&]*\).*$/\1/p'`
+    regNodeLatitude=`echo "$QUERY_STRING" | sed -n 's/^.*regNodeLatitude=\([^&]*\).*$/\1/p'`
+    regNodeLongitude=`echo "$QUERY_STRING" | sed -n 's/^.*regNodeLongitude=\([^&]*\).*$/\1/p'`
+    regNodeGeohash=`echo "$QUERY_STRING" | sed -n 's/^.*regNodeGeohash=\([^&]*\).*$/\1/p'`
+    regRateOfCharging=`echo "$QUERY_STRING" | sed -n 's/^.*regRateOfCharging=\([^&]*\).*$/\1/p'`
+    regRateOfParking=`echo "$QUERY_STRING" | sed -n 's/^.*regRateOfParking=\([^&]*\).*$/\1/p'`
+    regNodePower=`echo "$QUERY_STRING" | sed -n 's/^.*regNodePower=\([^&]*\).*$/\1/p'`
+    regNodeNotes=`echo "$QUERY_STRING" | sed -n 's/^.*regNodeNotes=\([^&]*\).*$/\1/p'`
+    regNodeTelephone=`echo "$QUERY_STRING" | sed -n 's/^.*regNodeTelephone=\([^&]*\).*$/\1/p'`
+    regNodeLocation=`echo "$QUERY_STRING" | sed -n 's/^.*regNodeLocation=\([^&]*\).*$/\1/p'`
+
+  	regNodeAddress=$(echo $regNodeAddress | tr /A-Z/  /a-z/) #to lower
+    regNodeLatitude=${regNodeLatitude//%20/}
+    regNodeLongitude=${regNodeLongitude//%20/}
+    regNodeGeohash=${regNodeGeohash//%20/}
+    regNodeLocation=${regNodeLocation//%20/ }
+    regNodeTelephone=${regNodeTelephone//%20/}
+    regNodeNotes=${regNodeNotes//%20/ }
+
+    #               1                 2                   3                 4                    5                  6                   7                   8               9                     10             
+    #echo db_call $regNodeAddress "$regNodeLocation" $regNodeLatitude $regNodeLongitude $regNodeGeohash $regRateOfCharging $regRateOfParking $regNodePower $regNodePorts $regNodeTelephone  >> /tmp/debug;;
+    echo db_call "$regNodeAddress" "$regNodeLocation" "$regNodeTelephone" "$regRateOfParking" "$regRateOfCharging"  "$regNodePower"  "$regNodeTitle" "$regNodeNotes" $regNodeLatitude $regNodeLongitude $regNodeGeohash   >> /tmp/debug
+    db_call "$regNodeAddress" "$regNodeLocation" "$regNodeTelephone" "$regRateOfParking" "$regRateOfCharging"  "$regNodePower"  "$regNodeTitle" "$regNodeNotes" $regNodeLatitude $regNodeLongitude $regNodeGeohash;;
+  save)
+    node_address=`echo "$QUERY_STRING" | sed -n 's/^.*node_address=\([^&]*\).*$/\1/p'`
+    contract_address=`echo "$QUERY_STRING" | sed -n 's/^.*contract_address=\([^&]*\).*$/\1/p'`
+    rpc=`echo "$QUERY_STRING" | sed -n 's/^.*rpc=\([^&]*\).*$/\1/p'`
+    protocol=`echo "$QUERY_STRING" | sed -n 's/^.*protocol=\([^&]*\).*$/\1/p'`
+    switch_port=`echo "$QUERY_STRING" | sed -n 's/^.*switch_port=\([^&]*\).*$/\1/p'`
+    #debug=`echo "$QUERY_STRING" | sed -n 's/^.*debug=\([^&]*\).*$/\1/p'`
+    #interval=`echo "$QUERY_STRING" | sed -n 's/^.*interval=\([^&]*\).*$/\1/p'`
+
+    rpc=${rpc//%40/@}
+    rpc=${rpc//%3A/:}
+    rpc=${rpc//%2F//}
+
+    uci set node.station.address="$node_address"
+    uci set node.service.contract="$contract_address"
+    uci set node.service.rpc="$rpc"
+    uci set node.service.protocol="$protocol"
+    uci set node.service.switch_port="$switch_port"
+    uci commit
+
+    #killall -9 geth
+    #/usr/bin/charge_service > /dev/null &
+
+    printf "{\"node_address\":\"$node_address\",\"contract_address\":\"$contract_address\",\"rpc\":\"$rpc\",\"switch_port\":\"$switch_port\"}";;
+  setup)
+    node_address=$(uci get node.station.address)
+    contract_address=$(uci get node.service.contract)
+    rpc=$(uci get node.service.rpc)
+    protocol=$(uci get node.service.protocol)
+    switch_port=$(uci get node.service.switch_port)
+    #debug=$(uci get node.service.debug)
+    #interval=$(uci get node.service.interval)
+
+    printf "{\"node_address\":\"$node_address\",\"contract_address\":\"$contract_address\",\"rpc\":\"$rpc\",\"protocol\":\"$protocol\",\"switch_port\":\"$switch_port\"}";;
+  format_sd)
+    format_sd
+    printf "\"  SD Card Formated. Please reboot the device.\"";;
+  node_status)
+    echo $(cat /tmp/node_status.json);;
+  switch_status)
+    echo $(cat /tmp/state.json);;
+  switch_params)
+    echo $(cat /tmp/output.json);;
+  *)
+    printf "\"Bad request\"";;
+esac
+

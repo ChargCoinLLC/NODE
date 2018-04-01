@@ -1,0 +1,123 @@
+@font-face{font-family:'Glyphicons Regular';
+src:url('./glyphicons-regular.eot');
+src:url('./glyphicons-regular.eot?#iefix') format('embedded-opentype'),url('./glyphicons-regular.woff2') format('woff2'),url('./glyphicons-regular.woff') format('woff'),url('./glyphicons-regular.ttf') format('truetype'),url('./glyphicons-regular.svg#glyphiconsregular') format('svg')}
+.glyphicons{position:relative;
+display:inline-block;
+font-family:'Glyphicons Regular';
+font-style:normal;
+font-weight:normal;
+vertical-align:top;
+-webkit-font-smoothing:antialiased;
+-moz-osx-font-smoothing:grayscale}
+.glyphicons.x05{font-size:12px}
+.glyphicons.x2{font-size:48px}
+.glyphicons.x3{font-size:72px}
+.glyphicons.x4{font-size:96px}
+.glyphicons.x5{font-size:120px}
+.glyphicons.light:before{color:#f2f2f2}
+.glyphicons.drop:before{text-shadow:-1px 1px 3px rgba(0,0,0,0.3)}
+.glyphicons.flip{-moz-transform:scaleX(-1);
+-o-transform:scaleX(-1);
+-webkit-transform:scaleX(-1);
+transform:scaleX(-1);
+filter:FlipH;
+-ms-filter:"FlipH"}
+.glyphicons.flipv{-moz-transform:scaleY(-1);
+-o-transform:scaleY(-1);
+-webkit-transform:scaleY(-1);
+transform:scaleY(-1);
+filter:FlipV;
+-ms-filter:"FlipV"}
+.glyphicons.rotate90{-webkit-transform:rotate(90deg);
+-moz-transform:rotate(90deg);
+-ms-transform:rotate(90deg);
+transform:rotate(90deg)}
+.glyphicons.rotate180{-webkit-transform:rotate(180deg);
+-moz-transform:rotate(180deg);
+-ms-transform:rotate(180deg);
+transform:rotate(180deg)}
+.glyphicons.rotate270{-webkit-transform:rotate(270deg);
+-moz-transform:rotate(270deg);
+-ms-transform:rotate(270deg);
+transform:rotate(270deg)}
+
+.glyphicons-remove:before{content:"\E198"}
+.glyphicons-ok:before{content:"\E199"}
+.glyphicons-refresh:before{content:"\E082"}
+.glyphicons-wifi:before{content:"\E074"}
+
+.animated{-webkit-animation-duration:1s;
+animation-duration:1s;
+-webkit-animation-fill-mode:both;
+animation-fill-mode:both;
+-webkit-animation-timing-function:ease-in-out;
+animation-timing-function:ease-in-out;
+animation-iteration-count:infinite;
+-webkit-animation-iteration-count:infinite}
+@-webkit-keyframes pulse{0%{-webkit-transform:scale(1)}
+50%{-webkit-transform:scale(1.1)}
+100%{-webkit-transform:scale(1)}
+}
+@keyframes pulse{0%{transform:scale(1)}
+50%{transform:scale(1.1)}
+100%{transform:scale(1)}
+}
+.pulse{-webkit-animation-name:pulse;
+animation-name:pulse}
+@-webkit-keyframes rotateIn{0%{-webkit-transform-origin:center center;
+-webkit-transform:rotate(-200deg);
+opacity:0}
+100%{-webkit-transform-origin:center center;
+-webkit-transform:rotate(0);
+opacity:1}
+}
+@keyframes rotateIn{0%{transform-origin:center center;
+transform:rotate(-200deg);
+opacity:0}
+100%{transform-origin:center center;
+transform:rotate(0);
+opacity:1}
+}
+.rotateIn{-webkit-animation-name:rotateIn;
+animation-name:rotateIn}
+@-webkit-keyframes bounce{0%,20%,50%,80%,100%{-webkit-transform:translateY(0)}
+40%{-webkit-transform:translateY(-30px)}
+60%{-webkit-transform:translateY(-15px)}
+}
+@keyframes bounce{0%,20%,50%,80%,100%{transform:translateY(0)}
+40%{transform:translateY(-30px)}
+60%{transform:translateY(-15px)}
+}
+.bounce{-webkit-animation-name:bounce;
+animation-name:bounce}
+@-webkit-keyframes swing{20%,40%,60%,80%,100%{-webkit-transform-origin:top center}
+20%{-webkit-transform:rotate(15deg)}
+40%{-webkit-transform:rotate(-10deg)}
+60%{-webkit-transform:rotate(5deg)}
+80%{-webkit-transform:rotate(-5deg)}
+100%{-webkit-transform:rotate(0deg)}
+}
+@keyframes swing{20%{transform:rotate(15deg)}
+40%{transform:rotate(-10deg)}
+60%{transform:rotate(5deg)}
+80%{transform:rotate(-5deg)}
+100%{transform:rotate(0deg)}
+}
+.swing{-webkit-transform-origin:top center;
+transform-origin:top center;
+-webkit-animation-name:swing;
+animation-name:swing}
+@-webkit-keyframes tada{0%{-webkit-transform:scale(1)}
+10%,20%{-webkit-transform:scale(.9) rotate(-3deg)}
+30%,50%,70%,90%{-webkit-transform:scale(1.1) rotate(3deg)}
+40%,60%,80%{-webkit-transform:scale(1.1) rotate(-3deg)}
+100%{-webkit-transform:scale(1) rotate(0)}
+}
+@keyframes tada{0%{transform:scale(1)}
+10%,20%{transform:scale(.9) rotate(-3deg)}
+30%,50%,70%,90%{transform:scale(1.1) rotate(3deg)}
+40%,60%,80%{transform:scale(1.1) rotate(-3deg)}
+100%{transform:scale(1) rotate(0)}
+}
+.tada{-webkit-animation-name:tada;
+animation-name:tada}

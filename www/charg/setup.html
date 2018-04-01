@@ -1,0 +1,182 @@
+<!doctype html>
+<html style="width:100%;height:100%">
+	<head>
+		<title>Charg Portal</title>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="author" content="Onion Corporation" />
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes" />
+		<link rel="stylesheet" href="../setup-wizard/css/bootstrap.css" />
+		<link rel="stylesheet" href="../setup-wizard/css/styles.css" />
+		<link rel="stylesheet" href="../setup-wizard/icons/glyphicons.css" />
+		<link rel="stylesheet" href="../setup-wizard/icons/onion.css" />
+	</head>
+	<body style="width:100%;height:100%">
+    <div id="contentContainer">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-2">
+
+                    <div class="card card-block main" style="margin-top:40px;">
+                        <form id="save-form">
+
+                        <fieldset class="form-group">
+                            <label for="node_address">Node Address</label>
+                            <input type="text" class="form-control" id="node_address" name="node_address" autocomplete="off" />
+                        </fieldset>
+
+                        <fieldset class="form-group">
+                            <label for="contract_address">Contract Address</label>
+                            <input type="text" class="form-control" id="contract_address" name="contract_address" autocomplete="off" />
+                        </fieldset>
+
+                        <fieldset class="form-group">
+                            <label for="rpc">RPC</label>
+                            <input type="text" class="form-control" id="rpc" name="rpc" autocomplete="off" />
+                        </fieldset>
+
+                        <fieldset class="form-group">
+                            <label for="switch_port">Switch Port</label>
+                            <input type="text" class="form-control" id="switch_port" name="switch_port" autocomplete="off" />
+                        </fieldset>
+
+                        <fieldset class="form-group">
+                            <label for="protocol" >Protocol</label>
+                            <select class="form-control c-select" id="protocol" name="protocol" autocomplete="off">
+                                <option value="secure">Secure</option>
+                                <option value="fast">Fast</option>
+                            </select>
+                        </fieldset>
+
+
+                        <div id="result_message"></div>
+
+                        
+                        <button id="saveButton" type="submit" class="btn btn-info">Save</button>
+                        <button id="statusButton" type="submit" class="btn btn-info">Status</button>
+                        <button id="formatButton" type="submit"  style="display: none;"  class="btn btn-info">Format SD Card</button>
+                        
+                        </form>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+<!-- Modal -->
+<div class="modal fade" id="dialog-format-sd" tabindex="-1" role="dialog" aria-labelledby="formatLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="formatLabel">Format SD Card</h4>
+			</div>
+			<div class="modal-body">
+                All data on SD card will be erased !
+				Are you sure ?
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" id="do-format-sd">Format</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+    
+		<script src="../setup-wizard/js/jquery.js"></script>
+		<script src="../setup-wizard/js/jquery.storage.js"></script>
+        <script src="../setup-wizard/js/bootstrap.js"></script>
+        
+<!--        <script src="web3.min.js"></script>  -->
+
+        <script>
+            $.ajax({
+                    type : 'GET',
+                    dataType : 'json',
+                    url : "/cgi-bin/cgi-chg?action=setup",
+                    success : function(result) {
+                            if(typeof result.success != 'undefined')
+                                    window.location="/login.html";
+                            console.log(result);
+                            $("#node_address").val(result.node_address);
+                            $("#contract_address").val(result.contract_address);
+                            $("#rpc").val(result.rpc);
+                            $("#protocol").val(result.protocol);
+                            $("#switch_port").val(result.switch_port);
+                    }
+            });
+
+            $.ajax({
+                type : 'GET',
+                dataType : 'json',
+                url : "/cgi-bin/cgi-chg?action=node_status",
+            })
+            .done(function( result ) {
+                if(typeof result.success != 'undefined')
+                    window.location="/login.html";
+                //console.log(result);
+                if (result.sdcard_ready!="1") {
+                    $("#formatButton").show();
+                }
+            });
+            
+            $("#statusButton").click(function(){
+                window.location="/charg/";
+                return false;
+            });
+
+            $("#formatButton").click(function(){
+                $('#dialog-format-sd').modal();    
+                return false;
+            });
+
+            $("#do-format-sd").click(function(){
+                $.ajax({
+                    type : 'GET',
+                    dataType : 'json',
+                    url : "/cgi-bin/cgi-chg?action=format_sd",
+                    success : function(result) {
+                            if(typeof result.success != 'undefined')
+                                    window.location="/login.html";
+                            console.log(result);
+                            $("#result_message").html(result);
+                    }
+                });
+                $('#dialog-format-sd').modal('hide');
+            });
+
+            $("#saveButton").click(function(){
+                    $("#result_message").html("Updating...");
+                    $.ajax({
+                            //type: "POST",
+                            //url: "/cgi-bin/cgi-chg",
+                            //data: $("#save-form").serialize(),
+                            //dataType: 'json',
+                            type: "GET",
+                            url: "/cgi-bin/cgi-chg?action=save"+
+                                "&node_address="+$("#node_address").val()+
+                                "&contract_address="+$("#contract_address").val()+
+                                "&rpc="+$("#rpc").val()+
+                                "&protocol="+$("#protocol").val()+
+                                "&switch_port="+$("#switch_port").val(),
+                            timeout: 10000,
+                            success: function(result){
+                                if(result.contract_address){
+                                            $("#result_message").html("Update successfully");
+                                }else{
+                                            $("#result_message").html(result.error);
+                                }
+                            },
+                            error: function(requestObject, error, errorThrown){
+                                    $("#result_message").html(result.error);
+                            }
+                    });
+                    return false;
+            });
+            
+    </script>
+            
+
+	</body>
+</html>

@@ -1,0 +1,602 @@
+body {
+    background: url('../icons/background.jpg') repeat 0 0;
+    background-attachment: fixed;
+    -webkit-animation: 60s linear 0s normal none infinite animate;
+    -moz-animation: 60s linear 0s normal none infinite animate;
+    -ms-animation: 60s linear 0s normal none infinite animate;
+    -o-animation: 60s linear 0s normal none infinite animate;
+    animation: 60s linear 0s normal none infinite animate;
+    overflow-x: hidden;
+
+}
+
+ 
+@-webkit-keyframes animate {
+    from {background-position:1278px 0;}
+    to {background-position: 0 0;}
+}
+ 
+@-moz-keyframes animate {
+    from {background-position:1278px 0;}
+    to {background-position: 0 0;}
+}
+ 
+@-ms-keyframes animate {
+    from {background-position:1278px 0;}
+    to {background-position: 0 0;}
+}
+ 
+@-o-keyframes animate {
+    from {background-position:1278px 0;}
+    to {background-position: 0 0;}
+}
+ 
+@keyframes animate {
+    from {background-position: 1278px 0;}
+    to {background-position: 0 0;}
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none!important;
+}
+
+.contentContainer {
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+#transparent{
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #1a1a1a;
+    background-attachment: fixed;
+    opacity:0.6;
+    filter: alpha(opacity=60);
+    width: 100%;
+    height: 100%;
+}
+.wrapper {
+    position: absolute;
+    width: 40rem;
+    margin: 0 auto;
+    z-index: 10;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+}
+
+.main {
+	background-color: #fff;
+	border-color: transparent;
+	padding: 4rem 2rem;
+	margin-bottom: 0;
+}
+
+.stepClass{
+    min-width: 640px;
+/*    height: auto;*/
+}
+
+#topCard{
+    padding: 0 0;
+    padding-top: 2rem;
+}
+
+.shiftLeftIn{
+    -webkit-animation: slideLeftIn 1s;
+    -moz-animation: slideLeftIn 1s;
+    -o-animation: slideLeftIn 1s;
+    animation: slideLeftIn 1s;
+    animation-fill-mode: forwards;
+    -webkit-animation-timing-function: ease;
+}
+
+.shiftLeftOut{
+    -webkit-animation: slideLeftOut 1s;
+    -moz-animation: slideLeftOut 1s;
+    -o-animation: slideLeftOut 1s;
+    animation: slideLeftOut 1s;
+    animation-fill-mode: forwards;
+    -webkit-animation-timing-function: ease;
+}
+.shiftRightIn{
+    -webkit-animation: slideRightIn 1s;
+    -moz-animation: slideRightIn 1s;
+    -o-animation: slideRightIn 1s;
+    animation: slideRightIn 1s;
+    animation-fill-mode: forwards;
+    -webkit-animation-timing-function: ease;
+}
+
+.shiftRightOut{
+    -webkit-animation: slideRightOut 1s;
+    -moz-animation: slideRightOut 1s;
+    -o-animation: slideRightOut 1s;
+    animation: slideRightOut 1s;
+    animation-fill-mode: forwards;
+    -webkit-animation-timing-function: ease;
+}
+.shakeClass{
+    -webkit-animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+    -moz-animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+    -o-animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+@-webkit-keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+@-moz-keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+@-o-keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+@keyframes slideLeftIn{
+    from{left: 7000px;}
+    to{left: 0px;}
+}
+@-webkit-keyframes  slideLeftIn{
+    from{left: 7000px;}
+    to{left: 0px;}
+}
+@-moz-keyframes slideLeftIn{
+    from{left: 7000px;}
+    to{left: 0px;}
+}
+@-o-keyframes slideLeftIn{
+    from{left: 7000px;}
+    to{left: 0px;}
+}
+
+@keyframes slideLeftOut{
+    from{left: 0px;}
+    to{left: -7000px;}
+}
+@-webkit-keyframes slideLeftOut{
+    from{left: 0px;}
+    to{left: -7000px;}
+}
+@-moz-keyframes slideLeftOut{
+    from{left: 0px;}
+    to{left: -7000px;}
+}
+@-o-keyframes slideLeftOut{
+    from{left: 0px;}
+    to{left: -7000px;}
+}
+
+@keyframes slideRightIn{
+    from{left: -7000px;}
+    to{left: 0px;}
+}
+@-webkit-keyframes slideRightIn{
+    from{left: -7000px;}
+    to{left: 0px;}
+}
+@-moz-keyframes slideRightIn{
+    from{left: -7000px;}
+    to{left: 0px;}
+}
+@-o-keyframes slideRightIn{
+    from{left: -7000px;}
+    to{left: 0px;}
+}
+
+@keyframes slideRightOut{
+    from{left: 0px;}
+    to{left: 7000px;}
+}
+@-webkit-keyframes slideRightOut{
+    from{left: 0px;}
+    to{left: 7000px;}
+}
+@-moz-keyframes slideRightOut{
+    from{left: 0px;}
+    to{left: 7000px;}
+}
+@-o-keyframes slideRightOut{
+    from{left: 0px;}
+    to{left: 7000px;}
+}
+
+/*********************************
+Branding
+**********************************/
+
+.onion-logo {
+    height: 64px;
+    width: 64px;
+    border-radius: 25%;
+    background-color: #9B4B63 ;
+    font-family: 'onion';
+    display: block;
+    position: relative;
+    text-decoration: none;
+    zoom: 1;
+    vertical-align: middle;
+    text-align: center;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin: auto;
+}
+
+.onion-logo:before {
+    color: #fff;
+    font-size: 48px;
+    line-height: 64px;
+    content: "\e600";
+    font-family: 'onion';
+    position: relative;
+    display: inline-block;
+    font-style: normal;
+    font-weight: normal;
+    zoom: 1;
+    vertical-align: middle;
+    text-transform: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.card > *:last-child {
+	margin-bottom: 0!important;
+}
+
+table.interface-info th {
+	color: #818a91;
+	font-weight: 400;
+}
+
+table.interface-info td {
+	font-weight: 600;
+}
+
+form .form-group:last-child {
+	margin-bottom: 0;
+}
+
+.c-select:focus {
+	box-shadow: none;
+}
+
+
+/*********************************
+Progress Indicator
+**********************************/
+
+#steps-indicator {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 1em;
+    padding-top: 2.5rem;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    position: relative;
+    top: -20px;
+}
+
+#steps-indicator > li {
+    list-style: none;
+    text-align: center;
+    font-weight: 300;
+    text-transform: uppercase;
+    width: auto;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    text-overflow: ellipsis;
+    color: #eee;
+    display: block;
+    -ms-flex: 1;
+    -webkit-flex: 1;
+    -moz-flex: 1;
+    flex: 1;
+}
+	/* Ball */
+	#steps-indicator > li:before {
+		content: '';
+	    border-radius: 100%;
+	    width: 1.5rem;
+	    height: 1.5rem;
+	    background-color: #eee;
+	    display: block;
+	    position: absolute;
+	    left: 50%;
+	    top: -2.5rem;
+	    margin-left: -0.75rem;
+	    z-index: 1000;
+	}
+
+	/* Stick */
+	#steps-indicator > li:after {
+		content: '';
+		width: 100%;
+		height: 0.25rem;
+		background-color: #eee;
+		display: block;
+		position: absolute;
+		right: 50%;
+		top: -2.5rem;
+		margin-top: 0.625rem;
+		z-index: 999;
+	}
+
+#steps-indicator > li:first-child:after {
+	display: none;
+}
+
+#steps-indicator > li.completed {
+    color: #9B4B63 ;
+}
+	#steps-indicator > li.completed:before,
+	#steps-indicator > li.completed:after {
+	    background-color: #9B4B63 ;
+	}
+
+
+/*********************************
+Steps
+**********************************/
+
+#steps {
+/*	padding: 0 2rem;*/
+    display: flex;
+}
+
+#steps > div {
+	display: none;
+}
+
+#steps > div > *:last-child {
+	margin-bottom: 0;
+}
+
+/*********************************
+Loading
+**********************************/
+
+.loading {
+    height: 4rem;
+    width: 4rem;
+    margin: auto;
+    -webkit-animation: rotate 1s infinite linear;
+    -moz-animation: rotate 1s infinite linear;
+    -o-animation: rotate 1s infinite linear;
+    animation: rotate 1s infinite linear;
+    border-left: 7px solid #eee;
+    border-right: 7px solid #eee;
+    border-bottom: 7px solid #eee;
+    border-top: 7px solid #9B4B63 ;
+    border-radius: 100%
+}
+.wifiLoad {
+    height: 5px;
+    width: 5px;
+    margin: auto;
+    -webkit-animation: rotate 1s infinite linear;
+    -moz-animation: rotate 1s infinite linear;
+    -o-animation: rotate 1s infinite linear;
+    animation: rotate 1s infinite linear;
+    border-left: 7px solid #5bc0de;
+    border-right: 7px solid #5bc0de;
+    border-bottom: 7px solid #5bc0de;
+    border-top: 7px solid #eee;
+    border-radius: 100%
+}
+
+.rotate {
+	-webkit-animation: rotate 1s infinite linear;
+    -moz-animation: rotate 1s infinite linear;
+    -o-animation: rotate 1s infinite linear;
+    animation: rotate 1s infinite linear;
+}
+
+@-webkit-keyframes rotate {
+    from {
+        -webkit-transform: rotate(0deg)
+    }
+    to {
+        -webkit-transform: rotate(359deg)
+    }
+}
+@-moz-keyframes rotate {
+    from {
+        -moz-transform: rotate(0deg)
+    }
+    to {
+        -moz-transform: rotate(359deg)
+    }
+}
+@-o-keyframes rotate {
+    from {
+        -o-transform: rotate(0deg)
+    }
+    to {
+        -o-transform: rotate(359deg)
+    }
+}
+@keyframes rotate {
+    from {
+        transform: rotate(0deg)
+    }
+    to {
+        transform: rotate(359deg)
+    }
+}
+/*********************************
+Wifi
+**********************************/
+
+.container {
+			width: 500px;
+			margin: auto;
+		}
+		
+		
+#connectedNetwork {
+			color: #008eff;
+		}
+
+.glyphicons-wifi {
+			color: #bebebe;
+			margin-right: 10px;
+		}
+
+.glyphicons-ok {
+			position: relative;
+			top: -20px;
+			float: right;
+			margin-right: 10px;
+			color: #000000;
+			z-index: 100;
+		}
+.glyphicons-ok:hover {
+			color: #ffbf00;
+		}
+		
+.glyphicons-remove {
+			position: relative;
+			top: -20px;
+			float: right;
+			margin-right: 5px;
+			color: #000000;
+			z-index: 100;
+		}
+		
+.glyphicons-remove:hover {
+			color: #ffbf00;
+		}
+		
+#wifi-loading {
+	position: relative;
+	right: -60px;
+	top: -20px;
+}
+
+#addWifiButton {
+    width: 94%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, 0%);
+    z-index: 500;
+}
+		
+/*********************************
+Cloud
+**********************************/		
+		
+/*#iframe-div
+{
+    width    : 94vh;
+    height   : 100vh;
+    overflow : hidden;
+    position : relative;
+}
+ 
+#iframe
+{
+    position : absolute;
+    left: -350px;
+}
+*/
+/*********************************
+Button Positions
+**********************************/	
+.btn-secondary {
+	position: relative;
+	top: 40px;
+}
+
+.btn-info {
+	position: relative;
+	top: 20px;
+}
+
+#skipWifiButton {
+	position: relative;
+	top: 40px;
+}
+
+.moveLeft{
+	position: relative;
+	left: -16px;
+}
+
+.moveRight{
+	position:relative;
+	right: -14px;
+}

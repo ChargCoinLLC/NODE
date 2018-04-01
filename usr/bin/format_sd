@@ -1,0 +1,10 @@
+
+DEV=/dev/mmcblk0
+#DEV=/dev/sda
+
+echo -e "d\nd\nd\nd\nn\np\n1\n\n+512M\nY\nn\np\n2\n\n\nw\n" | fdisk $DEV
+
+mkswap $DEVp1
+
+mkfs.ext4 $DEVp2
+

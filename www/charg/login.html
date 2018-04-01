@@ -1,0 +1,41 @@
+<!doctype html>
+<html style="width:100%;height:100%">
+	<head>
+		<title>Charge Portal</title>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="author" content="Onion Corporation" />
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes" />
+		<link rel="stylesheet" href="../setup-wizard/css/bootstrap.css" />
+		<link rel="stylesheet" href="../setup-wizard/css/styles.css" />
+		<link rel="stylesheet" href="../setup-wizard/icons/glyphicons.css" />
+		<link rel="stylesheet" href="../setup-wizard/icons/onion.css" />
+	</head>
+	<body style="width:100%;height:100%">
+        <div id="contentContainer">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-2">
+                    <form id="login-form">
+                        <fieldset class="form-group">
+                            <label for="login-username">Username</label>
+                            <input type="text" class="form-control" id="login-username" autocomplete="off" />
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <label for="login-password">Password</label>
+                            <input type="password" class="form-control" id="login-password" autocomplete="off" />
+                        </fieldset>
+
+                        <div id="login-message"></div>
+
+                        <button id="loginButton" type="submit" class="btn btn-info">Log In</button>
+                    </form>
+                </div>
+            </div>
+
+		</div>
+		<script src="../setup-wizard/js/jquery.js"></script>
+		<script src="../setup-wizard/js/jquery.storage.js"></script>
+		<script src="../setup-wizard/js/bootstrap.js"></script>
+		<script src="./js/main.js"></script>
+	</body>
+</html>

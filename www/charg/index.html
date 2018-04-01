@@ -1,0 +1,538 @@
+<!doctype html>
+<html style="width:100%;height:100%">
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="pragma" content="no-cache" />
+	<head>
+		<title>Charg Portal</title>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="author" content="Onion Corporation" />
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes" />
+		<link rel="stylesheet" href="../setup-wizard/css/bootstrap.css" />
+		<link rel="stylesheet" href="../setup-wizard/css/styles.css" />
+		<link rel="stylesheet" href="../setup-wizard/icons/glyphicons.css" />
+		<link rel="stylesheet" href="../setup-wizard/icons/onion.css" />
+	</head>
+	<body style="width:100%;height:100%">
+    <div id="contentContainer">
+
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-2">
+                    <div class="card card-block main" style="margin-top:40px;">
+
+                        <div id="error-box" class="alert alert-danger fade in" style="display: none;" >
+                            <a href="#" class="close" data-dismiss="alert">&times;</a>
+                            <strong>Error!</strong> <a href='https://metamask.io/'>Metamask</a> should be installed.
+                        </div>    
+
+                        <div class="alert alert-info fade in" >
+                            <a href="#" class="close" data-dismiss="alert">&times;</a>
+                            For more help visit <a href='http://forum.charg.io/'>forum.charg.io</a>
+                        </div>    
+                            
+                        <div class="row">
+                            <div class="col-md-4">
+                                Node Status:
+                            </div>
+                            <div id="node_status" class="col-md-8">
+                                
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                Node Address:
+                            </div>
+                            <div id="node_address" class="col-md-8">
+                                
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                Node Balance:
+                            </div>
+                            <div id="node_balance" class="col-md-8">
+                                
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                Rate of Charging:
+                            </div>
+                            <div id="rateOfCharging" class="col-md-8">
+                                
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                Rate of Parking:
+                            </div>
+                            <div id="rateOfParking" class="col-md-8">
+                                
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                Contract Address:
+                            </div>
+                            <div id="contract_address" class="col-md-8">
+                                
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                Station state:
+                            </div>
+                            <div id="station_state" class="col-md-8">
+                                
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                Client state:
+                            </div>
+                            <div id="client_state" class="col-md-8">
+                                
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                Time to charge:
+                            </div>
+                            <div id="time_to_charge" class="col-md-8">
+                                
+                            </div>
+                        </div>
+                        <button id="setupButton" type="submit" class="btn btn-info">Setup</button>
+                        <button id="registerNodeButton" style="display: none;" class="btn btn-info hidden">Register Node</button>
+                        <button id="setRateOfChargingButton" style="display: none;" class="btn btn-info hidden">Set Rate Of Charging</button>
+                        <button id="setRateOfParkingButton" style="display: none;" class="btn btn-info hidden">Set Rate Of Parking</button>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="registerNodeModal" tabindex="-1" role="dialog" aria-labelledby="registerNodeTitle" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="registerNodeTitle">Register Node</h4>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="regNodeLatitude" name="regNodeLatitude" />
+                <input type="hidden" id="regNodeLongitude" name="regNodeLongitude" />
+                <input type="hidden" id="regNodeGeohash" name="regNodeGeohash" />
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <fieldset class="form-group">
+                            <label for="regNodeTitle">Node Title</label>
+                            <input type="text" class="form-control" id="regNodeTitle" name="regNodeTitle" autocomplete="off" />
+                        </fieldset>
+                    </div>    
+                    <div class="col-md-6">
+                        <fieldset class="form-group">
+                            <label for="regNodeAddress">Node Eth Address</label>
+                            <input type="text" class="form-control" id="regNodeAddress" name="regNodeAddress" autocomplete="off" />
+                        </fieldset>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-4">
+                        <fieldset class="form-group">
+                            <label for="regRateOfCharging">Rate Of Charging</label>
+                            <input type="text" class="form-control" id="regRateOfCharging" name="regRateOfCharging" autocomplete="off"  value="0.2"/>
+                        </fieldset>
+                    </div>
+                    <div class="col-md-4">
+                        <fieldset class="form-group">
+                            <label for="regRateOfParking">Rate Of Parking</label>
+                            <input type="text" class="form-control" id="regRateOfParking" name="regRateOfParking" autocomplete="off"  value="0.1"/>
+                        </fieldset>
+                    </div>
+                    <div class="col-md-4">
+                        <fieldset class="form-group">
+                                <label for="regNodePower">Power, kW</label>
+                                <input type="text" class="form-control" id="regNodePower" name="regNodePower" autocomplete="off" value="10"/>
+                        </fieldset>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <fieldset class="form-group">
+                                <label for="regNodeTelephone">Telephone</label>
+                                <input type="text" class="form-control" id="regNodeTelephone" name="regNodeTelephone" autocomplete="off" />
+                        </fieldset>
+                    </div>
+                    <div class="col-md-6">
+                        <fieldset class="form-group">
+                            <label for="regNodeNotes">Notes</label>
+                            <input type="text" class="form-control" id="regNodeNotes" name="regNodeNotes" autocomplete="off" value=""/>
+                        </fieldset>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <fieldset class="form-group">
+                            <label for="regNodeLocation">Location</label>
+                            <input type="text" class="form-control" id="regNodeLocation" name="regNodeLocation" autocomplete="off" />
+                        </fieldset>
+                    </div>
+                    <div class="col-md-4">
+                        <button type="button" class="btn btn-default btn-small" id="showOnMap">Find On Map</button>
+                        <div id="latlon"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <iframe id="geoplus" src="http://geoplus.in.ua/charg" height="200" width="100%">
+                        
+                    </iframe>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="doRegisterNode">Register</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="setRateOfChargingModal" tabindex="-1" role="dialog" aria-labelledby="setRateOfChargingTitle" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="setRateOfChargingTitle">Set New Rate Of Charging</h4>
+            </div>
+            <div class="modal-body">
+
+                <fieldset class="form-group">
+                    <label for="srcNodeAddress">Node Address</label>
+                    <input type="text" class="form-control" id="srcNodeAddress" name="srcNodeAddress" autocomplete="off" />
+                </fieldset>
+        
+                <fieldset class="form-group">
+                    <label for="srcRateOfCharging">Rate Of Charging</label>
+                    <input type="text" class="form-control" id="srcRateOfCharging" name="srcRateOfCharging" autocomplete="off" />
+                </fieldset>
+    
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="doSetRateOfCharging">Set New Rate</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="setRateOfParkingModal" tabindex="-1" role="dialog" aria-labelledby="setRateOfParkingTitle" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="setRateOfParkingTitle">Set New Rate Of Parking</h4>
+                </div>
+                <div class="modal-body">
+    
+                    <fieldset class="form-group">
+                        <label for="srpNodeAddress">Node Address</label>
+                        <input type="text" class="form-control" id="srpNodeAddress" name="srpNodeAddress" autocomplete="off" />
+                    </fieldset>
+            
+                    <fieldset class="form-group">
+                        <label for="srpRateOfParking">Rate Of Parking</label>
+                        <input type="text" class="form-control" id="srpRateOfParking" name="srpRateOfParking" autocomplete="off" />
+                    </fieldset>
+        
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="doSetRateOfParking">Set New Rate</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+    
+		<script src="../setup-wizard/js/jquery.js"></script>
+		<script src="../setup-wizard/js/jquery.storage.js"></script>
+        <script src="../setup-wizard/js/bootstrap.js"></script>
+        
+        <script>
+
+            var nodeData = [];
+            var chargContract;
+
+            if (typeof web3 !== 'undefined') {
+                web3 = new Web3(web3.currentProvider);
+            } else {
+                $("#error-box").show();
+                //web3 = new Web3(new Web3.providers.HttpProviders("http://93.178.245.130:8545"));
+                //web3 = new Web3(new Web3.providers.HttpProviders(data.rpc));
+            }
+    
+            //web3.eth.getBlockNumber( function(error,result) {
+            //    document.getElementById('testarea').innerText = result;
+            //});
+
+            function registerNode(){
+                var regNodeAddress = document.getElementById('regNodeAddress').value;
+                var regRateOfCharging = 1000000000000000000*document.getElementById('regRateOfCharging').value;
+                var regRateOfParking = 1000000000000000000*document.getElementById('regRateOfParking').value;
+                //var sendAmount = web3.toWei( etherAmount, 'ether');
+                chargeContract.registerNode(regRateOfCharging, regRateOfParking, {value: 0, from: regNodeAddress, gas: 3000000}, function(error,result) {
+//                    console.log(result);
+                    //console.log(result.toString());
+                    $.ajax({
+                            //type: "POST",
+                            //url: "/cgi-bin/cgi-chg",
+                            //data: $("#save-form").serialize(),
+                            //dataType: 'json',
+                            type: "GET",
+                            url: "/cgi-bin/cgi-chg?action=register"+
+                                "&regNodeTitle="+$("#regNodeTitle").val()+
+                                "&regNodeAddress="+$("#regNodeAddress").val()+
+                                "&regNodeLatitude="+$("#regNodeLatitude").val()+
+                                "&regNodeLongitude="+$("#regNodeLongitude").val()+
+                                "&regNodeGeohash="+$("#regNodeGeohash").val()+
+                                "&regRateOfCharging="+$("#regRateOfCharging").val()+
+                                "&regRateOfParking="+$("#regRateOfParking").val()+
+                                "&regNodePower="+$("#regNodePower").val()+
+                                "&regNodeNotes="+$("#regNodeNotes").val()+
+                                "&regNodeTelephone="+$("#regNodeTelephone").val()+
+                                "&regNodeLocation="+$("#regNodeLocation").val()
+                                ,
+                            timeout: 10000,
+                            success: function(result){
+                                //if(result.contract_address){
+                                //            $("#result_message").html("Update successfully");
+                                //}else{
+                                //            $("#result_message").html(result.error);
+                                //}
+                            },
+                            error: function(requestObject, error, errorThrown){
+                                //$("#result_message").html(result.error);
+                            }
+                    });
+                    $('#registerNodeModal').modal('hide');
+//                    return false;
+                });
+            };
+
+            function setRateOfCharging(){
+                var srcNodeAddress = document.getElementById('srcNodeAddress').value;
+                var srcRateOfCharging = 1000000000000000000*document.getElementById('srcRateOfCharging').value;
+                //var sendAmount = web3.toWei( etherAmount, 'ether');
+                chargeContract.updateChargingRate(srcRateOfCharging, {value: 0, from: srcNodeAddress, gas: 3000000}, function(error,result) {
+                    //console.log(result);
+                    $('#setRateOfChargingModal').modal('hide');
+                });
+            };
+
+            function setRateOfParking(){
+                var srpNodeAddress = document.getElementById('srpNodeAddress').value;
+                var srpRateOfParking = 1000000000000000000*document.getElementById('srpRateOfParking').value;
+                //var sendAmount = web3.toWei( etherAmount, 'ether');
+                chargeContract.updateParkingRate(srpRateOfParking, {value: 0, from: srpNodeAddress, gas: 3000000}, function(error,result) {
+                    //console.log(result);
+                    $('#setRateOfParkingModal').modal('hide');
+                });
+            };
+
+            function readContract(data){
+
+                /*if (typeof web3 !== 'undefined') {
+                    web3 = new Web3(web3.currentProvider);
+                } else {
+                    //web3 = new Web3(new Web3.providers.HttpProviders("http://192.168.3.1:8545"));
+                    web3 = new Web3(new Web3.providers.HttpProviders(data.rpc));
+                }*/
+
+                var contractAbi = [{"constant":false,"inputs":[{"name":"_newAddress","type":"address"}],"name":"setMultisigAddress","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_spender","type":"address"},{"name":"_value","type":"uint256"}],"name":"approve","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"node","type":"address"}],"name":"parkingOff","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"maxCap","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"chargingRate","type":"uint256"},{"name":"parkingRate","type":"uint256"}],"name":"registerNode","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_from","type":"address"},{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"transferFrom","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"transferToContributor","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"parkingSwitches","outputs":[{"name":"node","type":"address"},{"name":"startTime","type":"uint256"},{"name":"endTime","type":"uint256"},{"name":"fixedRate","type":"uint256"},{"name":"initialized","type":"bool"},{"name":"predefinedAmount","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"decimals","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"chargingSwitches","outputs":[{"name":"node","type":"address"},{"name":"startTime","type":"uint256"},{"name":"endTime","type":"uint256"},{"name":"fixedRate","type":"uint256"},{"name":"initialized","type":"bool"},{"name":"predefinedAmount","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"END_TIME","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"reservedFundsCharging","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"minCap","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"multisig","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"standard","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"rate","type":"uint256"}],"name":"updateChargingRate","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"_eth","type":"uint256"}],"name":"calculateEthToChargcoin","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"rateOfCharging","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"rateOfParking","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"node","type":"address"},{"name":"time","type":"uint256"}],"name":"parkingOn","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_spender","type":"address"},{"name":"_subtractedValue","type":"uint256"}],"name":"decreaseApproval","outputs":[{"name":"success","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"_owner","type":"address"}],"name":"balanceOf","outputs":[{"name":"balance","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"reservedFundsParking","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_numberOfReturns","type":"uint256"}],"name":"batchReturnEthIfFailed","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"node","type":"address"}],"name":"chargeOff","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"contributorList","outputs":[{"name":"contributionAmount","type":"uint256"},{"name":"tokensIssued","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"symbol","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getPrice","outputs":[{"name":"result","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"node","type":"address"}],"name":"blockNode","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"transfer","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"node","type":"address"},{"name":"time","type":"uint256"}],"name":"chargeOn","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"authorized","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"tokens","type":"uint256"}],"name":"getAmountBonus","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"pure","type":"function"},{"constant":true,"inputs":[],"name":"BEGIN_TIME","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"rate","type":"uint256"}],"name":"updateParkingRate","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_contributor","type":"address"}],"name":"createTokens","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":false,"inputs":[{"name":"_spender","type":"address"},{"name":"_addedValue","type":"uint256"}],"name":"increaseApproval","outputs":[{"name":"success","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"_owner","type":"address"},{"name":"_spender","type":"address"}],"name":"allowance","outputs":[{"name":"remaining","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"crowdsaleState","outputs":[{"name":"","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"ethRaised","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"payable":true,"stateMutability":"payable","type":"fallback"},{"anonymous":false,"inputs":[{"indexed":false,"name":"blockNumber","type":"uint256"}],"name":"CrowdsaleStarted","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"blockNumber","type":"uint256"}],"name":"CrowdsaleEnded","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"to","type":"address"},{"indexed":false,"name":"amount","type":"uint256"}],"name":"ErrorSendingETH","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"blockNumber","type":"uint256"}],"name":"MinCapReached","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"blockNumber","type":"uint256"}],"name":"MaxCapReached","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"owner","type":"address"},{"indexed":true,"name":"spender","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":true,"name":"to","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Transfer","type":"event"}];
+                chargeContract = web3.eth.contract(contractAbi).at(data.contract_address);
+
+                nodeData["nodeAddress"] = data.node_address;
+
+                chargeContract.balanceOf(data.node_address, function(e, r) {
+                    document.getElementById('node_balance').innerText = ""+(r.c[0]/10000)+" CHG";
+                });
+                    
+                chargeContract.authorized(data.node_address, function(err, res) {
+                    if (res.c[0]==1) {
+                        nodeData["authorized"] = 1;
+                        //document.getElementById('node_status').innerText = "authorized";
+                        chargeContract.rateOfCharging(data.node_address, function(e, r) {
+                            console.log(r);
+                            nodeData["rateOfCharging"] = r.c[0]/10000;
+                            document.getElementById('rateOfCharging').innerText = ""+(nodeData["rateOfCharging"])+" CHG/s";
+                        });
+                        chargeContract.rateOfParking(data.node_address, function(e, r) {
+                            console.log(r);
+                            nodeData["rateOfParking"] = r.c[0]/10000;
+                            document.getElementById('rateOfParking').innerText = ""+(nodeData["rateOfParking"])+" CHG/s";
+                        });
+                        $("#registerNodeButton").hide();
+                        $("#setRateOfChargingButton").show();
+                        $("#setRateOfParkingButton").show();
+                    }else{
+                        nodeData["authorized"] = 0;
+                        document.getElementById('node_status').innerText = "not authorized";
+                        document.getElementById('node_balance').innerText = "-";
+                        document.getElementById('rateOfCharging').innerText = "-";
+                        document.getElementById('rateOfParking').innerText = "-";
+                        $("#registerNodeButton").show();
+                        $("#setRateOfChargingButton").hide();
+                        $("#setRateOfParkingButton").hide();
+                    }
+                });
+            }
+
+            function updateView(){
+               $.ajax({
+                    type : 'GET',
+                    dataType : 'json',
+                    url : "/cgi-bin/cgi-chg?action=switch_status"
+                })
+                .done(function( result ) {
+                   if(typeof result.success != 'undefined')
+                                    window.location="/login.html";
+                    //console.log(result);
+                    $("#station_state").html(result.station_state);
+                    $("#client_state").text(result.client_state);
+                    $("#time_to_charge").html(result.time_to_charge);
+                });
+
+                $.ajax({
+                        type : 'GET',
+                        dataType : 'json',
+                        url : "/cgi-bin/cgi-chg?action=setup"
+                })
+                .done(function( result ) {
+                    if(typeof result.success != 'undefined')
+                            window.location="/login.html";
+                            //console.log(result);
+                    if(result.node_address == '')
+                            window.location="/charg/setup.html";
+                            
+                    $("#node_address").html(result.node_address);
+                    $("#contract_address").text(result.contract_address);
+                    readContract(result);
+                });
+                
+                $.ajax({
+                    type : 'GET',
+                    dataType : 'json',
+                    url : "/cgi-bin/cgi-chg?action=node_status",
+                })
+                .done(function( result ) {
+                    if(typeof result.success != 'undefined')
+                        window.location="/login.html";
+                    //console.log(result);
+                    $("#node_status").text(result.node_status);
+                });
+            }
+            
+            $("#setupButton").click(function(){
+                window.location="/charg/setup.html";
+                return false;
+            });
+
+            $("#registerNodeButton").click(function(){
+                $("#regNodeAddress").val(nodeData["nodeAddress"]);
+                $("#regRateOfCharging").val(0);
+                $("#regRateOfParking").val(0);
+                $('#registerNodeModal').modal();    
+                return false;
+            });
+
+            $("#setRateOfChargingButton").click(function(){
+                $("#srcNodeAddress").val(nodeData["nodeAddress"]);
+                $("#srcRateOfCharging").val(nodeData["rateOfCharging"]);
+                $('#setRateOfChargingModal').modal();    
+                return false;
+            });
+            $("#setRateOfParkingButton").click(function(){
+                $("#srpNodeAddress").val(nodeData["nodeAddress"]);
+                $("#srpRateOfParking").val(nodeData["rateOfParking"]);
+                $('#setRateOfParkingModal').modal();    
+                return false;
+            });
+
+            $("#doRegisterNode").click(function(){
+                registerNode();
+                $('#registerNodeModal').modal('hide');    
+                return false;
+            });
+
+            $("#doSetRateOfCharging").click(function(){
+                setRateOfCharging();
+                $('#setRateOfChargingModal').modal('hide');    
+                return false;
+            });
+
+            $("#doSetRateOfParking").click(function(){
+                setRateOfParking();
+                $('#setRateOfParkingModal').modal('hide');    
+                return false;
+            });
+
+            updateView();
+
+            window.setInterval("updateView()",5000); 
+
+            // addEventListener support for IE8
+            function bindEvent(element, eventName, eventHandler) {
+                if (element.addEventListener){
+                    element.addEventListener(eventName, eventHandler, false);
+                } else if (element.attachEvent) {
+                    element.attachEvent('on' + eventName, eventHandler);
+                }
+            }            
+
+            // Send a message to the child iframe
+            var iframeEl = document.getElementById('geoplus');
+            
+            // Send a message to the child iframe
+            var sendMessage = function(msg) {
+                // Make sure you are sending a string, and to stringify JSON
+                iframeEl.contentWindow.postMessage('frame'+msg, '*');
+            };
+
+            $("#showOnMap").click(function(){
+                sendMessage('' + $("#regNodeLocation").val());
+            });
+
+            bindEvent(window, 'message', function (e) {
+                var data = ''+e.data;
+                if (data.substr(0,7)=="latlon:") {
+                    var latlon = data.substr(7).replace("(","").replace(")","").split(",");
+                    $("#latlon").text(""+latlon[0]+","+latlon[1]);
+                    $("#regNodeLatitude").val(latlon[0]);
+                    $("#regNodeLongitude").val(latlon[1]);
+                    $("#regNodeGeohash").val(latlon[2]);
+                }
+
+            });
+
+        </script>
+
+	</body>
+</html>
