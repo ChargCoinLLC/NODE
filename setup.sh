@@ -1,7 +1,7 @@
 
-# opkg update && opkg install ca-bundle ca-certificates && wget https://github.com/ChargCoinLLC/NODE/blob/master/setup.sh -q -O /tmp/setup.sh.tmp && tr -d '\r' < /tmp/setup.sh.tmp > /tmp/setup.sh && chmod 755 /tmp/setup.sh && /tmp/setup.sh
+# opkg update && opkg install ca-bundle ca-certificates && wget https://raw.githubusercontent.com/ChargCoinLLC/NODE/master/setup.sh -q -O /tmp/setup.sh.tmp && tr -d '\r' < /tmp/setup.sh.tmp > /tmp/setup.sh && chmod 755 /tmp/setup.sh && /tmp/setup.sh
 
-setup_host=https://github.com/ChargCoinLLC/NODE/blob/master/
+setup_host=https://raw.githubusercontent.com/ChargCoinLLC/NODE/master/
 
 mkdir -p /www/cgi-bin
 mkdir -p /www/charg
