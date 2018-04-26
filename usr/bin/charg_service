@@ -134,9 +134,13 @@ do
 	# 1) read from db
 	
 	client_address=""
+	
 	firebase_res=$(db_call $node_address)
+    firebase_res=${firebase_res// /}
+
 	client_address=$(jsonval $firebase_res client_address)
 	client_state=$(jsonval $firebase_res client_state)
+
 	current_t=$(timestamp)
 	diff_t=$((current_t-begin_t))
 	if [ "$DEBUG" = 1 ]; then
@@ -175,6 +179,7 @@ do
 
 			db_call $node_address ready 
 			firebase_res=$(db_call $node_address)
+			firebase_res=${firebase_res// /}
 			station_state=$(jsonval $firebase_res station_state)
 			current_t=$(timestamp)
 			diff_t=$((current_t-begin_t))
@@ -195,6 +200,7 @@ do
 		while [ "$client_state" != "ready" ]; do
 
 			firebase_res=$(db_call $node_address)
+			firebase_res=${firebase_res// /}
 			client_state=$(jsonval $firebase_res client_state)
 			current_t=$(timestamp)
 			diff_t=$((current_t-begin_t))
@@ -287,6 +293,7 @@ do
 			
 				#firebase_res=$(curl -s $firebase_url/nodes/$node_address.json)
 				firebase_res=$(db_call $node_address)
+				firebase_res=${firebase_res// /}
 				client_state=$(jsonval $firebase_res client_state)
 				
 				if [ "$client_state" != "ready" ]; then
