@@ -22,7 +22,7 @@ config options client
 
 config options service
         option contract '0xC4A86561cb0b7EA1214904f26E6D50FD357C7986'
-	option rpc 'rpc:http://93.178.245.130:8845'
+	option rpc 'rpc:http://localhost:8545'
         option interval 5
         option switch_port 11
         option protocol secure
